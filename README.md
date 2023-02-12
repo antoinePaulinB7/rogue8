@@ -63,7 +63,7 @@ This is a project about making a roguelike.
 
 > *: means it's a modifier, so it combines with another monster type (i.e. Undead Ogre, Vampire Trolorc, Hydrake Lich)
 
-> **: means it's a modifier to an iteractable (i.e. Mimic Chest, Mimic Door, etc.)
+> **: means it's a modifier to an interactable (i.e. Mimic Chest, Mimic Door, etc.)
 ## 3. Items
 
 ## 4. Spells
