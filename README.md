@@ -74,8 +74,6 @@ This is a project about making a roguelike.
 ### 5. Teleport
 ### 6. Mind Control
 ### 7. Fear
-
-Test
 ### 8. Holy Sunder
 - Can break down doors, chest, traps
 - Can temporarily remove Undying
