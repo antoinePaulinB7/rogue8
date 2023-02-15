@@ -1,6 +1,6 @@
 use super::actor::Actor;
 use crate::world::action::Action;
-use crate::world::map::WorldMap;
+use crate::world::world_map::WorldMap;
 
 pub struct WorldState {
     name: String,
@@ -10,8 +10,12 @@ pub struct WorldState {
 }
 
 impl WorldState {
-    pub fn get_name(&self) -> String {
-        self.name.clone()
+    pub fn get_name(&self) -> &String {
+        &self.name
+    }
+
+    pub fn get_map(&self) -> &WorldMap {
+        &self.map
     }
 
     pub fn process(&self, action: Action) -> Self {

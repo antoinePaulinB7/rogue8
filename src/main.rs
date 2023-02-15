@@ -8,7 +8,7 @@ use terminal_engine::{Color, ColorTile, TerminalColor, TerminalPrintable};
 use world::world_state::WorldState;
 
 fn main() {
-    let mut world = WorldState::default();
+    let world = WorldState::default();
 
     println!("Hello, {}!", &world.get_name());
     let mut term = CrosstermEngine {
@@ -23,4 +23,15 @@ fn main() {
             background: TerminalColor::Dark(Color::Green),
         },
     );
+
+    for (position, tile) in world.get_map().get_tiles() {
+        term.print(
+            'X',
+            position.into(),
+            ColorTile {
+                foreground: TerminalColor::Light(Color::Red),
+                background: TerminalColor::Dark(Color::Green),
+            },
+        );
+    }
 }

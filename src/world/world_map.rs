@@ -7,6 +7,19 @@ pub struct Position {
     x: usize,
     y: usize,
 }
+
+impl From<(usize, usize)> for Position {
+    fn from((x, y): (usize, usize)) -> Self {
+        Self { x, y }
+    }
+}
+
+impl Into<(usize, usize)> for &Position {
+    fn into(self) -> (usize, usize) {
+        (self.x, self.y)
+    }
+}
+
 pub struct Tile {
     info: String,
     block_movement: bool,
@@ -16,7 +29,7 @@ pub struct Tile {
 impl Tile {
     pub fn wall() -> Self {
         Tile {
-            info: constants::wall.to_string(),
+            info: constants::WALL.to_string(),
             block_movement: true,
             block_sight: true,
         }
@@ -25,6 +38,12 @@ impl Tile {
 
 pub struct WorldMap {
     tiles: BTreeMap<Position, Tile>,
+}
+
+impl WorldMap {
+    pub fn get_tiles(&self) -> &BTreeMap<Position, Tile> {
+        &self.tiles
+    }
 }
 
 impl Default for WorldMap {

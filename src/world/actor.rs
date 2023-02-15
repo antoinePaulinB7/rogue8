@@ -1,5 +1,5 @@
 use crate::world::item::Item;
-use crate::world::map::Position;
+use crate::world::world_map::Position;
 
 pub struct Actor {
     position: Position,

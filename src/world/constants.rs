@@ -1,1 +1,1 @@
-pub const wall: &str = "Wall.";
+pub const WALL: &str = "Wall.";
