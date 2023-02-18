@@ -2,6 +2,7 @@ use crate::world::item::Equipment;
 use crate::world::item::Item;
 use crate::world::world_map::Position;
 
+#[derive(Clone)]
 pub enum Action {
     Move(Position),
     Look(Vec<Position>),

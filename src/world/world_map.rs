@@ -2,24 +2,9 @@ use std::collections::BTreeMap;
 
 use crate::world::constants;
 
-#[derive(Eq, Ord, PartialEq, PartialOrd)]
-pub struct Position {
-    x: usize,
-    y: usize,
-}
+pub type Position = (usize, usize);
 
-impl From<(usize, usize)> for Position {
-    fn from((x, y): (usize, usize)) -> Self {
-        Self { x, y }
-    }
-}
-
-impl Into<(usize, usize)> for &Position {
-    fn into(self) -> (usize, usize) {
-        (self.x, self.y)
-    }
-}
-
+#[derive(Clone)]
 pub struct Tile {
     info: String,
     block_movement: bool,
@@ -36,6 +21,7 @@ impl Tile {
     }
 }
 
+#[derive(Clone)]
 pub struct WorldMap {
     tiles: BTreeMap<Position, Tile>,
 }
@@ -53,7 +39,7 @@ impl Default for WorldMap {
         for x in 0..80 {
             for y in 0..50 {
                 if x == 0 || x == 79 || y == 0 || y == 49 {
-                    tiles.insert(Position { x, y }, Tile::wall());
+                    tiles.insert((x, y), Tile::wall());
                 }
             }
         }
