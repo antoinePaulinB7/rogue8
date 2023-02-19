@@ -51,7 +51,7 @@ impl TerminalPrintable for CrosstermEngine {
         )?;
         let buffer = [character as u8];
         self.output.write(&buffer[..]).unwrap();
-        crossterm::queue!(
+        crossterm::execute!(
             self.output,
             crossterm::style::ResetColor
         )?;
