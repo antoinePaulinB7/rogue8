@@ -1,4 +1,4 @@
-use crate::terminal_engine::{TerminalPrintable, Color, TerminalColor, ColorTile, TerminalError};
+use crate::terminal_engine::{TerminalPrintable, Color, TerminalColor, ColorTile, TerminalError, TerminalCharacter};
 use std::io::{Write};
 
 pub struct CrosstermEngine {
@@ -43,13 +43,13 @@ impl ColorTile {
 }
 
 impl TerminalPrintable for CrosstermEngine {
-    fn print(&mut self, character: char, position: (usize, usize), color: crate::terminal_engine::ColorTile) -> Result<(), crate::terminal_engine::TerminalError> {
+    fn print(&mut self, character: TerminalCharacter, position: (usize, usize)) -> Result<(), crate::terminal_engine::TerminalError> {
         crossterm::queue!(
             self.output, 
             crossterm::cursor::MoveTo(position.0 as u16, position.1 as u16),
-            crossterm::style::SetColors(color.to_crossterm_colors())
+            crossterm::style::SetColors(character.color.to_crossterm_colors())
         )?;
-        let buffer = [character as u8];
+        let buffer = [character.character as u8];
         self.output.write(&buffer[..]).unwrap();
         crossterm::execute!(
             self.output,

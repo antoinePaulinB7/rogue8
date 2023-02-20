@@ -1,3 +1,5 @@
+
+#[derive(Debug)]
 pub enum TerminalError {
     PositionOutOfBounds,
     Io(std::io::Error)
@@ -25,8 +27,13 @@ pub struct ColorTile {
     pub foreground: TerminalColor
 }
 
+pub struct TerminalCharacter {
+    pub character: char,
+    pub color: ColorTile,
+}
+
 pub trait TerminalPrintable {
-    fn print(&mut self, character: char, position: (usize, usize), color: ColorTile) -> Result<(), TerminalError>;
+    fn print(&mut self, ch: TerminalCharacter, position: (usize, usize)) -> Result<(), TerminalError>;
     fn clear(&mut self) -> Result<(), TerminalError>;
     fn refresh(&mut self) -> Result<(), TerminalError>;
 }
